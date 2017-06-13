@@ -1,4 +1,4 @@
-package com.yishuailuo.mywebproject.mytest.designpattern.proxy.aopwithoutconfig;
+package com.yishuailuo.mywebproject.mytest.designpattern.proxy.aopwithbeforeandafteradvice;
 
 /**
  * Created by luoyishuai on 17/6/13.

@@ -1,4 +1,4 @@
-package com.yishuailuo.mywebproject.mytest.designpattern.proxy.aopwithoutconfig;
+package com.yishuailuo.mywebproject.mytest.designpattern.proxy.aopwitharoundadvice;
 
 import org.springframework.aop.framework.ProxyFactory;
 
@@ -10,8 +10,8 @@ public class Client {
     public static void main(String[] args) {
         ProxyFactory proxyFactory = new ProxyFactory();
         proxyFactory.setTarget(new HelloImpl());
-        proxyFactory.addAdvice(new HelloBeforeAndAfterAdvice());
+        proxyFactory.addAdvice(new HelloAroundAdvice());
         Hello hello = (Hello) proxyFactory.getProxy();
-        hello.say("sparrow");
+        hello.say("nash");
     }
 }

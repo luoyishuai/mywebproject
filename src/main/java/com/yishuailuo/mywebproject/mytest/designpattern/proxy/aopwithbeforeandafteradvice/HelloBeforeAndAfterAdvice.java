@@ -1,4 +1,4 @@
-package com.yishuailuo.mywebproject.mytest.designpattern.proxy.aopwithoutconfig;
+package com.yishuailuo.mywebproject.mytest.designpattern.proxy.aopwithbeforeandafteradvice;
 
 import org.springframework.aop.AfterReturningAdvice;
 import org.springframework.aop.MethodBeforeAdvice;
