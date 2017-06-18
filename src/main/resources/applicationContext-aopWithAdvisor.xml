@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/context    http://www.springframework.org/schema/context/spring-context-3.1.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <context:component-scan base-package="com.yishuailuo.mywebproject.mytest.springaop.advisor">
+        <context:exclude-filter expression="org.springframework.stereotype.Controller" type="annotation"/>
+    </context:component-scan>
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:spring-config.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="greetingAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+        <property name="advice" ref="greetingAroundAdvice"/>
+        <property name="pattern" value="com.yishuailuo.mywebproject.mytest.springaop.advisor.GreetingImpl.good.*"/>
+    </bean>
+
+
+    <bean id="greetingProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target" ref="greetingImpl"/>
+        <property name="interceptorNames" value="greetingAdvisor"/>
+        <property name="proxyTargetClass" value="true"/>
+    </bean>
+
+<!--    <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+        <property name="beanNames" value="*Impl"/>
+        <property name="interceptorNames" value="greetingAdvisor"/>
+        <property name="optimize" value="true"/>
+    </bean>-->
+
+    <!--<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator">-->
+        <!--<property name="optimize" value="true"/>-->
+    <!--</bean>-->
+
+
+
+
+</beans>
