@@ -9,14 +9,6 @@
         <context:exclude-filter expression="org.springframework.stereotype.Controller" type="annotation"/>
     </context:component-scan>
 
-    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="locations">
-            <list>
-                <value>classpath:spring-config.properties</value>
-            </list>
-        </property>
-    </bean>
-
     <bean id="greetingAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
         <property name="advice" ref="greetingAroundAdvice"/>
         <property name="pattern" value="com.yishuailuo.mywebproject.mytest.springaop.advisor.GreetingImpl.good.*"/>
