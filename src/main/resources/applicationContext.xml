@@ -6,7 +6,9 @@
        http://www.springframework.org/schema/context    http://www.springframework.org/schema/context/spring-context-3.1.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <context:component-scan base-package="com.yishuailuo">
-        <context:exclude-filter expression="org.springframework.stereotype.Controller" type="annotation"/>
+        <context:exclude-filter  type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <context:exclude-filter type="regex" expression="com\.yishuailuo\.mywebproject\.mytest\.springaop\..*"/>
+        <context:exclude-filter type="regex" expression="com\.yishuailuo\.mywebproject\.mytest\.springaspectjaop\..*"/>
     </context:component-scan>
 
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
