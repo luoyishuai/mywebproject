@@ -5,21 +5,17 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
        http://www.springframework.org/schema/context    http://www.springframework.org/schema/context/spring-context-3.1.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <mvc:annotation-driven />
+    <mvc:annotation-driven/>
+
+    <import resource="classpath:datasource-mysql.xml"/>
 
     <context:component-scan base-package="com.yishuailuo">
-        <context:exclude-filter  type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
         <context:exclude-filter type="regex" expression="com\.yishuailuo\.mywebproject\.mytest\.springaop\..*"/>
         <context:exclude-filter type="regex" expression="com\.yishuailuo\.mywebproject\.mytest\.springaspectjaop\..*"/>
     </context:component-scan>
 
-    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="locations">
-            <list>
-                <value>classpath:spring-config.properties</value>
-            </list>
-        </property>
-    </bean>
+    <context:property-placeholder location="classpath*:spring-config.properties" />
 
     <!-- 这两个类已经标注解 @component 无需再创建 bean 并指定 class-->
     <!--<bean id="helloImpl" class="com.yishuailuo.mywebproject.mytest.designpattern.proxy.aopwithconfig.HelloImpl"/>-->

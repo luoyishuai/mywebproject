@@ -41,4 +41,12 @@ public class HelloWorldControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string("hello world from repository."));
     }
+
+    @Test
+    public void testGetJackDesc() throws Exception {
+
+        mockMvc.perform(get("/jack"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("jack_desc"));
+    }
 }

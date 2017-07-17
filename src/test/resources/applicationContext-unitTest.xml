@@ -7,6 +7,8 @@
 
     <mvc:annotation-driven />
 
+    <import resource="classpath:datasource-mysql.xml"/>
+
     <context:component-scan base-package="com.yishuailuo">
         <context:exclude-filter type="regex" expression="com\.yishuailuo\.mywebproject\.mytest\.springaop\..*"/>
         <context:exclude-filter type="regex" expression="com\.yishuailuo\.mywebproject\.mytest\.springaspectjaop\..*"/>

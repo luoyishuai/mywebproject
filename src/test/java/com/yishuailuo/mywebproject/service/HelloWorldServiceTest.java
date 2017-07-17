@@ -1,5 +1,7 @@
 package com.yishuailuo.mywebproject.service;
 
+import com.yishuailuo.mywebproject.domain.HelloWorld;
+import com.yishuailuo.mywebproject.mapper.HelloWorldMapper;
 import com.yishuailuo.mywebproject.repository.HelloWorldRepository;
 import org.junit.Assert;
 import org.junit.Before;
@@ -27,6 +29,9 @@ public class HelloWorldServiceTest {
     @Mock
     private HelloWorldRepository helloWorldRepository;
 
+    @Mock
+    private HelloWorldMapper helloWorldMapper;
+
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
@@ -37,5 +42,17 @@ public class HelloWorldServiceTest {
         when(helloWorldRepository.get()).thenReturn("hello world1");
         String result = helloWorldService.returnWelcome();
         Assert.assertEquals(result, "hello world1");
+    }
+
+    @Test
+    public void testMapper() throws Exception{
+        HelloWorld helloWorld = HelloWorld.builder()
+                .id(1)
+                .name("rose")
+                .nameDesc("roseDesc")
+                .build();
+        when(helloWorldMapper.get("rose")).thenReturn(helloWorld);
+        String result = helloWorldService.getHelloWorldDesc("rose");
+        Assert.assertEquals(result, "roseDesc");
     }
 }

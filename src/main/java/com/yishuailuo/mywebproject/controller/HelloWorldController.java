@@ -18,4 +18,9 @@ public class HelloWorldController {
     public String returnWelcome() {
         return helloWorldService.returnWelcome();
     }
+
+    @GetMapping("/jack")
+    public String getJackDesc() {
+        return helloWorldService.getHelloWorldDesc("jack");
+    }
 }
