@@ -1,5 +1,7 @@
 package com.yishuailuo.mywebproject.service;
 
+import com.yishuailuo.mywebproject.repository.HelloWorldRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -8,7 +10,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class HelloWorldService {
 
-    public String returnWelcome(){
-        return "Welcome!";
+    @Autowired
+    private HelloWorldRepository helloWorldRepository;
+
+    public String returnWelcome() {
+        return helloWorldRepository.get();
     }
 }
