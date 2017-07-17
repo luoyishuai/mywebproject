@@ -7,21 +7,15 @@
 
     <mvc:annotation-driven />
 
-    <import resource="classpath:datasource-mysql.xml"/>
+    <import resource="classpath:applicationContext-persistence.xml"/>
+    <import resource="classpath:datasource-mysql-unitTest.xml"/>
+
+    <context:property-placeholder location="classpath*:spring-config.properties" />
 
     <context:component-scan base-package="com.yishuailuo">
         <context:exclude-filter type="regex" expression="com\.yishuailuo\.mywebproject\.mytest\.springaop\..*"/>
         <context:exclude-filter type="regex" expression="com\.yishuailuo\.mywebproject\.mytest\.springaspectjaop\..*"/>
     </context:component-scan>
-
-    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="locations">
-            <list>
-                <value>classpath:spring-config.properties</value>
-            </list>
-        </property>
-    </bean>
-
 
     <bean id="helloWorldServiceMock" name="helloWorldService" class="org.mockito.Mockito" factory-method="mock">
         <constructor-arg value="com.yishuailuo.mywebproject.service.HelloWorldService"/>
