@@ -20,16 +20,6 @@
         </property>
     </bean>
 
-    <!-- 这两个类已经标注解 @component 无需再创建 bean 并指定 class-->
-    <!--<bean id="helloImpl" class="com.yishuailuo.mywebproject.mytest.designpattern.proxy.aopwithconfig.HelloImpl"/>-->
-    <!--<bean id="helloAroundAdvice" class="com.yishuailuo.mywebproject.mytest.designpattern.proxy.aopwithconfig.HelloAroundAdvice"/>-->
-
-    <bean id="helloProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
-        <property name="interfaces" value="com.yishuailuo.mywebproject.mytest.designpattern.proxy.aopwithconfig.Hello"/>
-        <property name="target" ref="helloImpl"/>
-        <property name="interceptorNames" value="helloAroundAdvice"/>
-    </bean>
-
 
     <bean id="helloWorldServiceMock" name="helloWorldService" class="org.mockito.Mockito" factory-method="mock">
         <constructor-arg value="com.yishuailuo.mywebproject.service.HelloWorldService"/>
