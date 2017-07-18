@@ -45,7 +45,7 @@ public class HelloWorldControllerTest {
     @Test
     public void testGetJackDesc() throws Exception {
 
-        mockMvc.perform(get("/jack"))
+        mockMvc.perform(get("/{name}/desc", "jack"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("jack_desc_test"));
     }

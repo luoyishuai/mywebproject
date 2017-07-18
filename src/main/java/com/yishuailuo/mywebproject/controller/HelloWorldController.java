@@ -3,6 +3,7 @@ package com.yishuailuo.mywebproject.controller;
 import com.yishuailuo.mywebproject.service.HelloWorldService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -19,8 +20,8 @@ public class HelloWorldController {
         return helloWorldService.returnWelcome();
     }
 
-    @GetMapping("/jack")
-    public String getJackDesc() {
-        return helloWorldService.getHelloWorldDesc("jack");
+    @GetMapping("/{name}/desc")
+    public String getDesc(@PathVariable(value = "name") String name) {
+        return helloWorldService.getHelloWorldDesc(name);
     }
 }
