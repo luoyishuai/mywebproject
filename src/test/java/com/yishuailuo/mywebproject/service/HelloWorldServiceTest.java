@@ -45,7 +45,7 @@ public class HelloWorldServiceTest {
                 .name("rose")
                 .nameDesc("roseDesc")
                 .build();
-        when(helloWorldMapper.get("rose")).thenReturn(helloWorld);
+        when(helloWorldMapper.getByName("rose")).thenReturn(helloWorld);
         String result = helloWorldService.getHelloWorldDesc("rose");
         Assert.assertEquals(result, "roseDesc");
     }
