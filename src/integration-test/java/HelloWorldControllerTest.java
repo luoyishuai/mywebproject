@@ -8,11 +8,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
+import static org.hamcrest.core.Is.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
  * Created by luoyishuai on 17/7/17.
@@ -48,5 +50,15 @@ public class HelloWorldControllerTest {
         mockMvc.perform(get("/{name}/desc", "jack"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("jack_desc_test"));
+    }
+
+    @Transactional
+    @Test
+    public void testAddHelloWorld() throws Exception {
+        mockMvc.perform(post("/hello-world")
+                .param("name", "Mark")
+                .param("nameDesc", "Mark_desc"))
+                .andExpect(jsonPath("$.name", is("Mark")))
+                .andExpect(jsonPath("$.nameDesc", is("Mark_desc")));
     }
 }
