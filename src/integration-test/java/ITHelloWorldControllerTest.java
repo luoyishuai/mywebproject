@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 // @ContextConfiguration 指定加载的 spring 配置文件（一个或多个）的位置, locations=xml配置文件， classes=class配置文件
 @ContextConfiguration(locations = "classpath:applicationContext-integrationTest.xml")
 @WebAppConfiguration
-public class HelloWorldControllerTest {
+public class ITHelloWorldControllerTest {
 
     private MockMvc mockMvc;
 
