@@ -1,0 +1,1 @@
+INSERT INTO hello_world VALUES (1, 'jack', 'jack_desc_test');

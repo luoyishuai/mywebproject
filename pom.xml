@@ -12,6 +12,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.version>4.3.8.RELEASE</spring.version>
         <tomcat.runtime.version>7.0.65</tomcat.runtime.version>
+        <h2.version>1.4.195</h2.version>
     </properties>
 
     <profiles>
@@ -267,6 +268,12 @@
                   <artifactId>spring-core</artifactId>
               </exclusion>
             </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${h2.version}</version>
         </dependency>
 
 
