@@ -1,3 +1,6 @@
+import com.github.springtestdbunit.DbUnitTestExecutionListener;
+import com.github.springtestdbunit.annotation.DatabaseSetup;
+import com.github.springtestdbunit.annotation.ExpectedDatabase;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -5,7 +8,11 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
+import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
+import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -25,6 +32,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ContextConfiguration(locations = "classpath:applicationContext-integrationTest.xml")
 @WebAppConfiguration
 @ActiveProfiles("integration-test")
+@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
+                DirtiesContextTestExecutionListener.class,
+                TransactionalTestExecutionListener.class,
+                DbUnitTestExecutionListener.class }
+)
+@DatabaseSetup("setUpDbSample.xml")
 public class ITHelloWorldControllerTest {
 
     private MockMvc mockMvc;
@@ -51,10 +64,11 @@ public class ITHelloWorldControllerTest {
 
         mockMvc.perform(get("/{name}/desc", "jack"))
                 .andExpect(status().isOk())
-                .andExpect(content().string("jack_desc_test"));
+                .andExpect(content().string("jack_desc"));
     }
 
     @Transactional
+    @ExpectedDatabase("expectedDbSample.xml")
     @Test
     public void testAddHelloWorld() throws Exception {
         mockMvc.perform(post("/hello-world")

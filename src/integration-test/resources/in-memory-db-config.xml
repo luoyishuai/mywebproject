@@ -6,7 +6,7 @@
     <beans profile="integration-test">
         <jdbc:embedded-database id="dataSource" type="H2">
             <jdbc:script location="classpath:schema.sql"/>
-            <jdbc:script location="classpath:testData.sql"/>
+            <!--<jdbc:script location="classpath:testData.sql"/>-->
         </jdbc:embedded-database>
     </beans>
 </beans>
