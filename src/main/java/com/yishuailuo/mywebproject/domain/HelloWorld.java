@@ -19,5 +19,14 @@ public class HelloWorld {
     private Integer id;
     private String name;
     private String nameDesc;
-
+    
+    @Override
+    public String toString() {
+        
+        return "HelloWorld{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", nameDesc='" + nameDesc + '\'' +
+                '}';
+    }
 }

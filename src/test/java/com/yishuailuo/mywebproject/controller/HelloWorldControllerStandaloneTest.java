@@ -12,6 +12,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
@@ -31,7 +32,8 @@ public class HelloWorldControllerStandaloneTest {
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        mockMvc = MockMvcBuilders.standaloneSetup(helloWorldController).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(helloWorldController)
+                .alwaysExpect(status().isOk()).build(); // can not be overridden
     }
 
     @Test
@@ -40,6 +42,7 @@ public class HelloWorldControllerStandaloneTest {
         when(helloWorldService.returnWelcome()).thenReturn(resultString);
 
         mockMvc.perform(get("/hello"))
+                .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", is("return welcome")))
                 .andExpect(content().string("return welcome"));
