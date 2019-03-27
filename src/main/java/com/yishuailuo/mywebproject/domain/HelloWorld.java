@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
+
 /**
  * Created by luoyishuai on 17/7/17.
  */
@@ -14,7 +16,7 @@ import lombok.experimental.Accessors;
 @AllArgsConstructor
 @NoArgsConstructor
 @Accessors(chain = true)
-public class HelloWorld {
+public class HelloWorld implements Serializable {
 
     private Integer id;
     private String name;

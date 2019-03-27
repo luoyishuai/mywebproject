@@ -1,7 +1,16 @@
 package com.yishuailuo.mywebproject.mapper;
 
 import com.yishuailuo.mywebproject.domain.HelloWorld;
-import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Options;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.ResultMap;
+import org.apache.ibatis.annotations.Results;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 /**
  * Created by luoyishuai on 17/7/17.
@@ -19,6 +28,8 @@ public interface HelloWorldMapper {
     @ResultMap("helloWorldResultMap")
     @Select("SELECT * FROM hello_world WHERE id=#{id}")
     HelloWorld get(HelloWorld helloWorld);
+
+    List<HelloWorld> getList();
 
     @Insert("insert into hello_world(`name`, `desc`) values(#{name},#{nameDesc})")
     @Options(useGeneratedKeys = true)

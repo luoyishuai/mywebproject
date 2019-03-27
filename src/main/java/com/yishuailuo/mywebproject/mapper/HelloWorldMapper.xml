@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yishuailuo.mywebproject.mapper.HelloWorldMapper">
+    <cache eviction="LRU" flushInterval="60000" readOnly="true"/>
     <resultMap id="helloWorldResultMap" type="HelloWorld">
         <id property="id" column="id"/>
         <result property="name" column="name"/>
         <result property="nameDesc" column="desc"/>
     </resultMap>
+
+    <select id="getList" resultMap="helloWorldResultMap" useCache="true">
+          SELECT * FROM hello_world
+    </select>
 </mapper>
