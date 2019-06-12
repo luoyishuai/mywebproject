@@ -20,7 +20,7 @@ public class BubbleSortTest {
             for (int j = 0; j < arrayLength - i; j++) {
                 // 因为每一轮都已筛选出最小的值，所以每一轮也只需要到 arrayLength - i
                 if (sortedArray[j] > sortedArray[j + 1]) {
-                    swqp(sortedArray, j, j + 1);
+                    swap(sortedArray, j, j + 1);
                     noswap = false;
                 }
             }
@@ -31,7 +31,7 @@ public class BubbleSortTest {
         return sortedArray;
     }
 
-    private static void swqp(int[] array, int i, int j) {
+    private static void swap(int[] array, int i, int j) {
         int temp = array[j];
         array[j] = array[i];
         array[i] = temp;
