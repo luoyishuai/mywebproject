@@ -11,7 +11,7 @@ public class SelectionSortTest {
         System.out.println("After sorting: " + Arrays.toString(sortedArray));
     }
     
-    public static int[] selectionSort(int[] array) {
+    private static int[] selectionSort(int[] array) {
         int arrayLength = array.length;
         int[] sortedArray = Arrays.copyOf(array, arrayLength);
         int min;
