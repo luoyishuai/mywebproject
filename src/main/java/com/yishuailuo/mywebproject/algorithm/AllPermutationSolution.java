@@ -7,7 +7,7 @@ public class AllPermutationSolution {
     private static int total = 0;
 
     public static void main(String[] args) {
-        int[] str = {0, 1, 2, 2, 3};
+        int[] str = {0, 1, 2, 3, 4};
         fullArray(str, 0, str.length - 1);
         System.out.println(total);
     }
