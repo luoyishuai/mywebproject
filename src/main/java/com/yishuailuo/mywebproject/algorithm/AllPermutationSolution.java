@@ -7,9 +7,25 @@ public class AllPermutationSolution {
     private static int total = 0;
 
     public static void main(String[] args) {
-        int[] str = {0, 1, 2, 3, 4};
-        fullArray(str, 0, str.length - 1);
+        int[] str = {0, 1, 2};
+        fullArray1(str, 0, str.length - 1);
         System.out.println(total);
+    }
+
+    private static void fullArray1(int[] arr, int cursor, int end) {
+        if (cursor == end) {
+            System.out.println(Arrays.toString(arr));
+            total++;
+        } else {
+            for (int i = cursor; i <= end; i++) {
+                if (!swapAccepted(arr, cursor, i)) {
+                    continue;
+                }
+                swap(arr, cursor, i);
+                fullArray1(arr, cursor + 1, end);
+                swap(arr, cursor, i);
+            }
+        }
     }
 
     private static void fullArray(int[] array, int cursor, int end) {

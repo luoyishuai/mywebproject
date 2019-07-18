@@ -6,7 +6,7 @@ public class AddTwoNumsSolution {
 
         int[] arr1 = new int[]{2, 4};
         ListNode l1 = buildList(arr1);
-        int[] arr2 = new int[]{4, 6, 4};
+        int[] arr2 = new int[]{4, 6, 4, 4};
         ListNode l2 = buildList(arr2);
         printList(l1);
         System.out.println();
@@ -14,9 +14,39 @@ public class AddTwoNumsSolution {
 
         System.out.println();
 
-        ListNode l3 = addTwoNum(l1, l2);
+        ListNode l3 = addTwoNum1(l1, l2);
         printList(l3);
 
+    }
+
+    private static ListNode addTwoNum1(ListNode l1, ListNode l2) {
+        if (l1 == null) {
+            return l2;
+        }
+        if (l2 == null) {
+            return l1;
+        }
+
+        int carry = 0;
+        ListNode l3 = new ListNode(-1, null);
+        ListNode l3Head = l3;
+        while (l1 != null || l2 != null) {
+            if (l1 != null) {
+                carry += l1.val;
+                l1 = l1.next;
+            }
+            if (l2 != null) {
+                carry += l2.val;
+                l2 = l2.next;
+            }
+            l3.next = new ListNode(carry % 10, null);
+            l3 = l3.next;
+            carry = carry >= 10 ? 1 : 0;
+        }
+        if (carry == 1) {
+            l3.next = new ListNode(1, null);
+        }
+        return l3Head.next;
     }
 
     private static ListNode buildList(int[] arr) {
