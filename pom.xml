@@ -12,7 +12,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.version>4.3.8.RELEASE</spring.version>
         <tomcat.runtime.version>7.0.65</tomcat.runtime.version>
-        <h2.version>1.4.195</h2.version>
+        <h2.version>2.1.210</h2.version>
         <jacoco.it.execution.data.file>${project.build.directory}/coverage-reports/jacoco-it.exec</jacoco.it.execution.data.file>
         <jacoco.ut.execution.data.file>${project.build.directory}/coverage-reports/jacoco-ut.exec</jacoco.ut.execution.data.file>
         <powermock.version>1.7.0RC4</powermock.version>
